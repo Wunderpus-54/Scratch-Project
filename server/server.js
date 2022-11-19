@@ -24,17 +24,26 @@ const cors = require('cors');
 app.use(cors());
 
 // insert database URI
+const URI = 'mongodb+srv://wunderpuss54:kobethegoat@cluster0.kltmhxv.mongodb.net/?retryWrites=true&w=majority';
 
 // insert database connection
+mongoose.connect(URI);
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
 
 // require in routers
 
 // static files
 // THIS NEEDS TO BE CHANGED TO WHEREVER OUR STATIC FILE IS BEING SERVED! I used ./index.html as a placeholder.
-app.use(express.static(path.join(_dirname, './index.html')));
+app.use(express.static(path.join(__dirname, './index.html')));
 
 // auth router
 // entry router
+
+app.get('/hello', (req, res) => {
+  res.json({hello: "world"})
+})
 
 // catch all
 app.use((req, res) => res.status(404).send('Page not found'));
