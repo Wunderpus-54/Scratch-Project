@@ -1,6 +1,7 @@
 // requiring in express
 const express = require('express');
 const { urlencoded } = require('express');
+require('dotenv').config();
 
 // in case we need to route paths
 const path = require('path');
@@ -24,10 +25,9 @@ const cors = require('cors');
 app.use(cors());
 
 // insert database URI
-const URI = 'mongodb+srv://wunderpuss54:kobethegoat@cluster0.kltmhxv.mongodb.net/?retryWrites=true&w=majority';
 
 // insert database connection
-mongoose.connect(URI);
+mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
