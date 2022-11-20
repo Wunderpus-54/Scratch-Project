@@ -41,5 +41,16 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
         ] 
-    }
+    },
+    devServer: {
+        host: 'localhost',
+        port: 8080,
+        static: {
+          directory: path.join(__dirname, 'dist'),
+          publicPath: '/',
+        },
+        proxy: {
+          '/api': 'http://localhost:3000',
+        },
+    },
 }
