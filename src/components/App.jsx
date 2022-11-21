@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Login from './Login.js';
-import Signup from './Signup.js';
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
 

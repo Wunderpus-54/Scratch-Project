@@ -1,9 +1,9 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 // import App from './components/App';
-import Home from './routes/HomeRoute/HomeRoute.jsx';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Auth from './routes/AuthRoute/AuthRoute.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
 import { createRoot } from 'react-dom/client';
 import {
   createBrowserRouter,
@@ -15,13 +15,7 @@ import {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <div>
-        <h1>Journal App</h1>
-        <Link to="login">Login</Link>
-        <Link to="signup">Sign up</Link>
-      </div>
-    ),
+    element: <Auth />,
   },
   {
     path: '/login',
