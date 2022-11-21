@@ -42,4 +42,17 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    host: 'localhost',
+    hot: true,
+    open: true,
+    port: 8080,
+    static: {
+      directory: path.join(__dirname, 'dist'),
+      publicPath: '/',
+    },
+    proxy: {
+      '/': 'http://localhost:3000',
+    },
+  },
 };
