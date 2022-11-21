@@ -8,6 +8,47 @@ import { useNavigate } from 'react-router-dom';
 const Signup = () => {
   const { setCurrentUser } = useContext(AuthContext);
   const usernameInput = useRef();
+  const passwordInput = useRef();
+  const navigate = useNavigate();
+
+  const createUser = async (event) => {
+    event.preventDefault();
+    const requestBody = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: usernameInput.current.value,
+        password: passwordInput.current.value,
+      }),
+    };
+
+    const result = await fetch('/auth/signup', requestBody);
+    const resolvedData = await result.json();
+
+    setCurrentUser(resolvedData);
+    navigate('/home');
+  };
+
+  return (
+    <form>
+      <label>
+        Input Username
+        <input
+          ref={usernameInput}
+          type="text"
+          placeholder="New Username"
+        ></input>
+      </label>
+      <label>
+        <input
+          ref={passwordInput}
+          type="text"
+          placeholder="New Password"
+        ></input>
+      </label>
+      <button onClick={createUser}>Submit</button>
+    </form>
+  );
 
   // usernameInput.current.value
   // <input ref={usernameInput}></input>;
