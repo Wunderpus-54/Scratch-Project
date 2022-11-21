@@ -23,3 +23,5 @@ const App = () => {
 };
 
 export default App;
+
+// we can delete this file btw becasue index.js is rendering all components
