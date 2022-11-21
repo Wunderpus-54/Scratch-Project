@@ -10,11 +10,11 @@ require('dotenv').config();
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    firstName: String,
-    lastName: String,
-    userName: String,
-    password: String,
-    entries: Object
-})
+  firstName: String,
+  lastName: String,
+  userName: String,
+  password: String,
+  entries: Object,
+});
 
 module.exports = mongoose.model('user', userSchema);

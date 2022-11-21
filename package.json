@@ -9,7 +9,7 @@
     "start:dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
     "dev:all": "concurrently \"npm run start:dev\" \"npm start\"",
-    "start:prod": "node server/server.js"
+    "start:prod": "nodemon server/server.js"
   },
   "keywords": [],
   "author": "Liam Jeon",

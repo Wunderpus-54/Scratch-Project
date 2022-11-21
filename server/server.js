@@ -32,15 +32,17 @@ app.use(cors());
 //   console.log('Connected to Database');
 // });
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true, useUnifiedTopology: true
-}).then(() => {
-  console.log('Connected to Database');
-});
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Connected to Database');
+  });
 
 // require in routers
-const authRouter = require("./routes/authRouter");
-
+const authRouter = require('./routes/authRouter');
 
 // static files
 // THIS NEEDS TO BE CHANGED TO WHEREVER OUR STATIC FILE IS BEING SERVED! I used ./index.html as a placeholder.
@@ -49,7 +51,7 @@ app.use(express.static(path.join(__dirname, './index.html')));
 // auth router
 // entry router
 
-app.use('/login', authRouter);
+app.use('/auth', authRouter);
 
 // app.get('/hello', (req, res) => {
 //   res.json({hello: "world"})
