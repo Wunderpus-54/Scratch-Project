@@ -46,12 +46,12 @@ const authRouter = require('./routes/authRouter');
 
 // static files
 // THIS NEEDS TO BE CHANGED TO WHEREVER OUR STATIC FILE IS BEING SERVED! I used ./index.html as a placeholder.
-app.use(express.static(path.join(__dirname, './index.html')));
+app.use(express.static(path.join(__dirname, '../src/index.html')));
 
 // auth router
 // entry router
 
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 
 // app.get('/hello', (req, res) => {
 //   res.json({hello: "world"})
