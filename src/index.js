@@ -1,10 +1,16 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 // import App from './components/App';
+import Home from './routes/HomeRoute/HomeRoute.jsx';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -12,8 +18,8 @@ const router = createBrowserRouter([
     element: (
       <div>
         <h1>Journal App</h1>
-        <Link to='login'>Login</Link>
-        <Link to='signup'>Sign up</Link>
+        <Link to="login">Login</Link>
+        <Link to="signup">Sign up</Link>
       </div>
     ),
   },
@@ -27,4 +33,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-createRoot(document.getElementById('root')).render(<RouterProvider router={router} />);
+createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+);
