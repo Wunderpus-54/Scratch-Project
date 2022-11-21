@@ -10,15 +10,11 @@ authRouter.post('/signup', userController.createUser, (req, res) => {
 
 // add post route for confirming user
 authRouter.post('/login', userController.checkUser, (req, res) => {
-  return res.status(200).json(res.locals.result);
+  return res.status(200).json(res.locals.user);
 });
 
 authRouter.get('/hello', (req, res) => {
   return res.json({ hello: 'world' });
 });
-
-// authRouter.post('/', userController.checkUser, (req, res) => {
-//     return res.status(200).json({"user": res.locals.newUser})
-// });
 
 module.exports = authRouter;

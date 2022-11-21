@@ -4,20 +4,24 @@ const User = require('../models/userModel.js');
 
 const userController = {};
 
-userController.checkUser = (req, res, next) => {
-  const { userName, password } = req.body;
-  res.locals.test = true;
-  next();
+userController.checkUser = async (req, res, next) => {
+  try {
+    const { userName, password } = req.body;
+    await User.findOne({ userName }).exec().then(doc=>{
+      if (doc.password == password){
+        res.locals.user = doc;
+        return next()
+      }
+    })
+  } catch(err){
+    return next({
+      log: 'Error caught in userController.createUser middleware',
+      message: {
+        err: 'An error has occured in the userController.createUser middleware ',
+      },
+    })
+  }
 };
-
-/*
-, (err, user) => {
-        if(err) return next()
-        res.locals.user = user;
-        return next();
-    }
-
-*/
 
 userController.createUser = async (req, res, next) => {
   try {
