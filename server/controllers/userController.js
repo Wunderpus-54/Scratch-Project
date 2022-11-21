@@ -10,14 +10,14 @@ userController.checkUser = async (req, res, next) => {
     await User.findOne({ userName }).exec().then(doc=>{
       if (doc.password == password){
         res.locals.user = doc;
-        return next()
       }
+      return next();
     })
   } catch(err){
     return next({
-      log: 'Error caught in userController.createUser middleware',
+      log: 'Error caught in userController.checkUser middleware',
       message: {
-        err: 'An error has occured in the userController.createUser middleware ',
+        err: 'An error has occured in the userController.checkUser middleware ',
       },
     })
   }

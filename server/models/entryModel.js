@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const entrySchema = new Schema({
   date: String,
-  ilearned: String,
+  iLearned: String,
   journal: String,
   moodScaler: Number,
 });

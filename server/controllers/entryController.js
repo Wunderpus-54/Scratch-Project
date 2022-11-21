@@ -6,8 +6,8 @@ const entryController = {};
 
 entryController.createEntry = async (req, res, next) => {
     try{
-        const { date, ilearned, journal, moodScaler } = req.body;
-        const result = await Entry.create({ date, ilearned, journal, moodScaler });
+        const { date, iLearned, journal, moodScaler } = req.body;
+        const result = await Entry.create({ date, iLearned, journal, moodScaler });
         res.locals.entry = result;
         return next();
     } catch(err){
