@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import JournalEntry from './JournalEntry.jsx'
 import JournalForm from './JournalForm.jsx'
 import axios from 'axios'
-import { Stack, HStack, VStack } from '@chakra-ui/react'
+import { Stack, HStack, VStack , SimpleGrid} from '@chakra-ui/react'
 
 const JournalEntryContainer = () => {
   // make get request to database for array of data
@@ -17,14 +17,14 @@ const JournalEntryContainer = () => {
   // pass down data from get request as prop to child component(<JournalEntry/>)
   return (
     <HStack spacing = '50px'>
-      <VStack spacing = '5px'>
+      <SimpleGrid columns = {2} spacing = {3}>
         {
           entries.map((entry) => (
             // <h1>{entry.date}</h1>
             <JournalEntry key={entry._id} entry={entry}/>
           ))
         }
-      </VStack>
+      </SimpleGrid>
       <JournalForm />
 
     </HStack>

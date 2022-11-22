@@ -44,8 +44,12 @@ entryController.createEntry = async (req, res, next) => {
 
 entryController.deleteEntry = async (req, res, next) => {
   try{
-    const { _id, date, iLearned, moodScaler } = req.body;
-    const result = await Entry.findOneAndDelete({_id : _id});
+    console.log(req.params);
+    const { id } = req.params;
+    res.locals.deleted = Entry.findOne({_id: id});
+    const result = await Entry.findOneAndDelete({_id : id});
+    console.log(result);
+    res.status(200).json(result)
     return next();
   }catch(err){
     return next({

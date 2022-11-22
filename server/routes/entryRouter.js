@@ -16,10 +16,10 @@ entryRouter.get('/getEntries',
         return res.status(200).json(res.locals.entries);
 })
 
-entryRouter.delete('/deleteEntry', 
+entryRouter.delete('/deleteEntry/:id', 
     entryController.deleteEntry,
     (req, res) => {
-        return res.status(200);
+        return res.status(200).json(res.locals.deleted);
     }
 )
 

@@ -15,6 +15,8 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import JournalEntryContainer from './components/journal/JournalEntryContainer.jsx';
 import './styles/index.css';
 
+
+
 import App from './components/App.jsx'
 
 const router = createBrowserRouter([

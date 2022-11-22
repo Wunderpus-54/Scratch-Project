@@ -6,13 +6,15 @@ import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-d
 
 import JournalEntryContainer from '../components/journal/JournalEntryContainer.jsx'
 
-import { Center } from '@chakra-ui/react'
+import { ChakraProvider, Center } from '@chakra-ui/react'
 
 const App = () => {
   return (
-    <Center> 
-      <JournalEntryContainer/> 
-    </Center>
+    <ChakraProvider>
+      <Center> 
+        <JournalEntryContainer/> 
+      </Center>
+    </ChakraProvider>
 
   );
 };
