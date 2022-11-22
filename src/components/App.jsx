@@ -4,27 +4,16 @@ import Signup from './Signup.jsx';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
 
-import JournalEntryContainer from './components/journal/JournalEntryContainer.jsx'
+import JournalEntryContainer from '../components/journal/JournalEntryContainer.jsx'
 
-
+import { Center } from '@chakra-ui/react'
 
 const App = () => {
   return (
+    <Center> 
+      <JournalEntryContainer/> 
+    </Center>
 
-    <JournalEntryContainer/>
-    // <div className='wrapper'>
-    //   <h1>Journal App</h1>
-    //   <BrowserRouter>
-    //     <Routes>
-    //       <Route path='/login'>
-    //         <Login />
-    //       </Route>
-    //       <Route path='/signup'>
-    //         <Signup />
-    //       </Route>
-    //     </Routes>
-    //   </BrowserRouter>
-    // </div>
   );
 };
 

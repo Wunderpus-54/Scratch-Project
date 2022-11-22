@@ -28,8 +28,8 @@ entryController.getEntries = async (req, res, next) => {
 // create a new entry
 entryController.createEntry = async (req, res, next) => {
     try{
-        const { date, iLearned, journal, moodScaler } = req.body;
-        const result = await Entry.create({ date, iLearned, journal, moodScaler });
+        const { date, iLearned, moodScaler } = req.body;
+        const result = await Entry.create({ date, iLearned, moodScaler });
         res.locals.entry = result;
         return next();
     } catch(err){
@@ -41,5 +41,20 @@ entryController.createEntry = async (req, res, next) => {
         })
     }
 }
+
+entryController.deleteEntry = async (req, res, next) => {
+  try{
+    const { _id, date, iLearned, moodScaler } = req.body;
+    const result = await Entry.findOneAndDelete({_id : _id});
+    return next();
+  }catch(err){
+    return next({
+      log: 'Error caught in entryController.deleteEntry middleware',
+      message: {
+        err: 'An error has occured in the entryController.deleteEntry middleware ',
+      },
+    })
+  }
+} 
 
 module.exports = entryController
