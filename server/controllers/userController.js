@@ -6,9 +6,9 @@ const userController = {};
 
 userController.checkUser = async (req, res, next) => {
   try {
-    const { userName, password } = req.body;
+    const { userName, password } = req.params;
     await User.findOne({ userName }).exec().then(doc=>{
-      if (doc.password == password){
+      if (doc.password === password){
         res.locals.user = doc;
       }
       return next();
@@ -32,8 +32,7 @@ userController.createUser = async (req, res, next) => {
       firstName,
       lastName,
       userName,
-      password,
-      entries: [],
+      password
     });
 
     console.log('IM INSIDE OF USER CONTROLLER CREATE USER');
