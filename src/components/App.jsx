@@ -4,8 +4,14 @@ import Signup from './Signup.jsx';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
 
+import JournalEntryContainer from './components/journal/JournalEntryContainer.jsx'
+
+
+
 const App = () => {
   return (
+
+    <JournalEntryContainer/>
     // <div className='wrapper'>
     //   <h1>Journal App</h1>
     //   <BrowserRouter>
