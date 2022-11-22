@@ -8,7 +8,7 @@
     "start": "webpack-dev-server",
     "start:dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
-    "dev:all": "concurrently \"npm run start:dev\" \"npm start\"",
+    "dev:all": "concurrently \"nodemon server/server.js\" \"npm start --hot\"",
     "start:prod": "nodemon server/server.js"
   },
   "keywords": [],

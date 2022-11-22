@@ -12,11 +12,14 @@ import {
 } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import JournalEntryContainer from './components/journal/JournalEntryContainer.jsx';
+
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Auth />,
+    element: <JournalEntryContainer/>
+    // element: <Auth />,  
   },
   {
     path: '/login',
@@ -26,6 +29,10 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <Signup />,
   },
+  {
+    path:'/home',
+    element: <JournalEntryContainer />
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

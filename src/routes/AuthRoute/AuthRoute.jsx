@@ -7,6 +7,7 @@ const Auth = () => {
       <h1>Journal App</h1>
       <Link to="login">Login</Link>
       <Link to="signup">Sign up</Link>
+      <Link to="home">home</Link>
     </div>
   );
 };

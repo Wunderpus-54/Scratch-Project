@@ -4,6 +4,28 @@ const Entry = require('../models/entryModel.js');
 
 const entryController = {};
 
+// show entries (last 10?)
+  // entryController.getEntries = () =>
+
+entryController.getEntries = async (req, res, next) => {
+  try{
+    const entries = await Entry.find();
+    res.locals.entries = entries;
+    return next();
+  } catch(error) {
+    return next({error: 'error in middleware getEntries'})
+  }
+}
+
+
+
+// update entry 
+  // entryController.updateEntry = () => 
+
+// delete entry
+  // entryController.deleteEntry = () =>
+
+// create a new entry
 entryController.createEntry = async (req, res, next) => {
     try{
         const { date, iLearned, journal, moodScaler } = req.body;
