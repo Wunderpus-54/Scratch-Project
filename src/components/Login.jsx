@@ -12,7 +12,7 @@ const Login = (props) => {
     const pass = document.querySelector('#password').value;
 
     const body = {
-      username: user,
+      userName: user,
       password: pass
     }
 
@@ -24,7 +24,7 @@ const Login = (props) => {
       },
       body: JSON.stringify(body)
     }).then((response)=>response.json()).then((data)=>{
-      props.getUser(body.username);
+      props.getUser(body.userName);
       console.log('data has fetched', data);
     }).catch(err=>{
       window.location.reload(true);

@@ -39,7 +39,7 @@ const Signup = () => {
     const body = {
       firstName: newFirst,
       lastName: newLast,
-      username: newUser,
+      userName: newUser,
       password: newPass,
     }
 
