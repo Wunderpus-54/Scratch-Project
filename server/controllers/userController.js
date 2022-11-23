@@ -27,8 +27,8 @@ userController.checkUser = async (req, res, next) => {
 
 userController.createUser = async (req, res, next) => {
   try {
-    const { firstName, lastName, userName, password } = req.body;
-    console.log(firstName, lastName, userName, password);
+    const { firstName, lastName, username, password } = req.body;
+    console.log(firstName, lastName, username, password);
 
     const result = await User.create({
       firstName,
