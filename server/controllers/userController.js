@@ -6,14 +6,16 @@ const userController = {};
 
 userController.checkUser = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    await User.findOne({ username }).exec().then(doc=>{
-      if (doc.password == password){
-        res.locals.user = doc;
-      }
+    const { userName, password } = req.body;
+    const result = await User.findOne({ userName });
+    
+    if (result.password === password) {
+      res.locals.user = result;
+      res.locals.id = result._id;
       return next();
-    })
-  } catch(err){
+    }
+  } 
+  catch(err){
     return next({
       log: 'Error caught in userController.checkUser middleware',
       message: {
@@ -31,14 +33,14 @@ userController.createUser = async (req, res, next) => {
     const result = await User.create({
       firstName,
       lastName,
-      username,
-      password,
-      entries: [],
+      userName,
+      password
     });
 
     console.log('IM INSIDE OF USER CONTROLLER CREATE USER');
 
     res.locals.result = result;
+    res.locals.id = result._id;
     return next();
   } catch (err) {
     return next({
