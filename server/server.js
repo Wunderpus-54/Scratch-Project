@@ -19,7 +19,7 @@ const PORT = 3000;
 //json parsing
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-
+app.use(cookieParser());
 // for the cors header since we're making a call to our backend api
 const cors = require('cors');
 app.use(cors());
