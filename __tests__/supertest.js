@@ -14,6 +14,14 @@ describe('Route Integration', () => {
         const response = await request(server).post('/api/auth/login').send({ userName: 'fake', password: 'fake'});
         expect(response.status).toBe(400);
       });
+
+      it('sends appropriate SSID cookie back in the response after login', async () => {
+        const response = await request(server).post('/api/auth/login').send({ userName: 'testing', password: 'testing'});
+        const cookies = response.headers['set-cookie'];
+        let ssidCookie = cookies[0];
+        ssidCookie = ssidCookie.slice(0, 5);
+        expect(ssidCookie).toBe('ssid=');
+      });
     });
 
     describe('POST /api/auth/signup', () => {
@@ -35,6 +43,20 @@ describe('Route Integration', () => {
         };
         const response = await request(server).post('/api/auth/signup').send(reqBody);
         expect(response.status).toBe(400);
+      });
+
+      it('sends appropriate SSID cookie back in the response after signup', async () => {
+        const reqBody = {
+          firstName: 'test',
+          lastName: 'test',
+          userName: 'testUser',
+          password: 'testPass'
+        };
+        const response = await request(server).post('/api/auth/signup').send(reqBody);
+        const cookies = response.headers['set-cookie'];
+        let ssidCookie = cookies[0];
+        ssidCookie = ssidCookie.slice(0, 5);
+        expect(ssidCookie).toBe('ssid=');
       });
     });
   });
