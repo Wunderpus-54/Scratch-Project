@@ -4,13 +4,6 @@ const server = 'http://localhost:3000';
 describe('Route Integration', () => {
   describe('/api/auth', () => {
 
-    describe('GET /api/auth/hello', () => {
-      it('responds with a response body of hello: world', async () => {
-        const response = await request(server).get('/api/auth/hello');
-        expect(response.body).toEqual({ hello: 'world' });
-      });
-    });
-
     describe('POST /api/auth/login', () => {
       it('responds to a correct login request sucessfully', async () => {
         const response = await request(server).post('/api/auth/login').send({ userName: 'testing', password: 'testing'});
@@ -19,7 +12,7 @@ describe('Route Integration', () => {
 
       it('responds to an incorrect login request with an error', async () => {
         const response = await request(server).post('/api/auth/login').send({ userName: 'fake', password: 'fake'});
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(400);
       });
     });
 
@@ -31,7 +24,7 @@ describe('Route Integration', () => {
           userName: 'testUser',
           password: 'testPass'
         };
-        const response = await (await request(server).post('/api/auth/signup')).send(reqBody);
+        const response = await request(server).post('/api/auth/signup').send(reqBody);
         expect(response.status).toBe(200);
       });
 
@@ -40,8 +33,8 @@ describe('Route Integration', () => {
           firstName: 'test',
           lastName: 'test',
         };
-        const response = await (await request(server).post('/api/auth/signup')).send(reqBody);
-        expect(response.status).toBe(404);
+        const response = await request(server).post('/api/auth/signup').send(reqBody);
+        expect(response.status).toBe(400);
       });
     });
   });
@@ -50,6 +43,7 @@ describe('Route Integration', () => {
     describe('POST', () => {
       it('responds with a text body to the post request', () => {
         const postBody = {
+          userName: 'test',
           date: '1/2/22',
           iLearned: 'iLearned test',
           journal: 'Test journal',
@@ -65,7 +59,7 @@ describe('Route Integration', () => {
     describe('GET', () => {
       it('responds to a get request by returing all journal entries in the body', () => {
         return request(server)
-          .get('/api/entry')
+          .get('/api/entry/testing')
           .expect('Content-Type', /application\/json/)
       });
     });
