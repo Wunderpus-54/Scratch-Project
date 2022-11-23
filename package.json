@@ -8,17 +8,17 @@
     "start": "webpack-dev-server",
     "start:dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
-    "dev:all": "concurrently \"npm run start:dev\" \"npm start\"",
+    "dev:all": "concurrently \"npm run start:dev\" \"npm run start:prod\"",
     "start:prod": "nodemon server/server.js",
     "test": "jest"
   },
   "keywords": [],
   "author": "Liam Jeon",
   "contributors": [
-    "Jackie Nguyen",
-    "Chihiro Shibayama Snider",
-    "Andy Oh",
-    "Jonathan Fangon"
+    "Emma Ferguson",
+    "Sylvia Thong",
+    "Jay Cheskis",
+    "Timmy Lem"
   ],
   "license": "ISC",
   "dependencies": {
