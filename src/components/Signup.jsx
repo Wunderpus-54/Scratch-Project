@@ -1,53 +1,84 @@
 import React, { useState } from 'react';
 // import { useSignUpContext } from '../context/signup-context';
 
-import { AuthContext } from '../context/AuthContext.jsx';
-import { useContext, useRef } from 'react';
+// import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-  const { setCurrentUser } = useContext(AuthContext);
-  const usernameInput = useRef();
-  const passwordInput = useRef();
-  const navigate = useNavigate();
+  // const { setCurrentUser } = useContext(AuthContext);
+  // const usernameInput = useRef();
+  // const passwordInput = useRef();
+  // const navigate = useNavigate();
 
-  const createUser = async (event) => {
-    event.preventDefault();
-    const requestBody = {
+  // const createUser = async (event) => {
+  //   event.preventDefault();
+  //   const requestBody = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       username: usernameInput.current.value,
+  //       password: passwordInput.current.value,
+  //     }),
+  //   };
+
+  //   const result = await fetch('/auth/signup', requestBody);
+  //   const resolvedData = await result.json();
+
+  //   setCurrentUser(resolvedData);
+  //   navigate('/home');
+  // };
+
+  let navigate = useNavigate();
+  const clickHandler = () => {
+    console.log('clicked');
+    const newFirst = document.querySelector('#newFirstName').value;
+    const newLast = document.querySelector('#newLastName').value;
+    const newUser = document.querySelector('#newUsername').value;
+    const newPass = document.querySelector('#newPassword').value;
+
+    const body = {
+      firstName: newFirst,
+      lastName: newLast,
+      username: newUser,
+      password: newPass,
+    }
+
+    fetch('api/auth/signup', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: usernameInput.current.value,
-        password: passwordInput.current.value,
-      }),
-    };
-
-    const result = await fetch('/auth/signup', requestBody);
-    const resolvedData = await result.json();
-
-    setCurrentUser(resolvedData);
-    navigate('/home');
-  };
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then((response)=>response.json()).then((data)=>{
+      console.log('data has fetched', data);
+    })
+  }
 
   return (
-    <form>
-      <label>
-        Input Username
+    <div className='signup'>
+      <h2>Sign-up Here</h2>
         <input
-          ref={usernameInput}
-          type="text"
-          placeholder="New Username"
-        ></input>
-      </label>
-      <label>
+          type='text'
+          id='newFirstName'
+          placeholder="New First Name">
+        </input>
         <input
-          ref={passwordInput}
-          type="text"
-          placeholder="New Password"
-        ></input>
-      </label>
-      <button onClick={createUser}>Submit</button>
-    </form>
+          type='text'
+          id='newLastName'
+          placeholder="New Last Name">
+        </input>
+        <input
+          type='text'
+          id='newUsername'
+          placeholder="New Username">
+        </input>
+        <input
+          type='text'
+          id='newPassword'
+          placeholder='New Password'>
+        </input>
+      <button onClick={clickHandler}>Submit</button>
+    </div>
   );
 
   // usernameInput.current.value

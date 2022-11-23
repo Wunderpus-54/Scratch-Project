@@ -1,63 +1,52 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import Signup from './Signup.jsx';
 
-const Login = () => {
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const Login = (props) => {
+  
+  let navigate = useNavigate();
 
-    const place = { city, country, notes };
+  const handleLogin = () => {
+    console.log('clicked');
+    const user = document.querySelector('#username').value;
+    const pass = document.querySelector('#password').value;
 
-    try {
-      const response = await fetch('api/login', {
-        method: 'POST',
-        body: JSON.stringify(place),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-        setError(json.error);
-        // setErrorField(json.errorField);
-        // console.log('error field: ', json.errorField);
-      }
-
-      if (response.ok) {
-        setCity('');
-        setCountry('');
-        setNotes('');
-        setError(null);
-        // setErrorField([]);
-        console.log('new place added!', json);
-        dispatch({
-          type: 'CREATE_PLACE',
-          payload: json,
-        });
-      }
-    } catch (error) {
-      console.log(error);
+    const body = {
+      username: user,
+      password: pass
     }
+
+    // the endpoint may vary depending on what the backend uses
+    fetch('api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then((response)=>response.json()).then((data)=>{
+      props.getUser(body.username);
+      console.log('data has fetched', data);
+    }).catch(err=>{
+      window.location.reload(true);
+      alert('Input a valid username/password combination')
+    })
   };
 
   return (
-    <div>
+    <div className='login'>
+      <button onClick={() => navigate('/signup')}>Sign-Up</button>
       <h2>Login</h2>
-      <form>
-        <div>
-          <input
-            type='text'
-            placeholder='Username'
-          />
-        </div>
-        <div>
-          <input
-            type='password'
-            placeholder='Password'
-          />
-        </div>
-        <button onClick={handleLogin}>Login</button>
-      </form>
+      <input
+        type='text'
+        id='username'
+        placeholder='Username'
+      />
+      <input
+        type='password'
+        id='password'
+        placeholder='Password'
+      />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

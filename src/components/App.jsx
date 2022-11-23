@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
-import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
 
 const App = () => {
+  const [username, setUsername] = useState('');
+  const getUser = (data) => {
+    setUsername(data);
+  }
   return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login getUser={getUser} />}></Route>
+        <Route path='/signup' element={<Signup />}></Route>
+      </Routes>
+    </Router>
+
+
     // <div className='wrapper'>
     //   <h1>Journal App</h1>
     //   <BrowserRouter>

@@ -6,8 +6,8 @@ const userController = {};
 
 userController.checkUser = async (req, res, next) => {
   try {
-    const { userName, password } = req.body;
-    await User.findOne({ userName }).exec().then(doc=>{
+    const { username, password } = req.body;
+    await User.findOne({ username }).exec().then(doc=>{
       if (doc.password == password){
         res.locals.user = doc;
       }
@@ -25,13 +25,13 @@ userController.checkUser = async (req, res, next) => {
 
 userController.createUser = async (req, res, next) => {
   try {
-    const { firstName, lastName, userName, password } = req.body;
-    console.log(firstName, lastName, userName, password);
+    const { firstName, lastName, username, password } = req.body;
+    console.log(firstName, lastName, username, password);
 
     const result = await User.create({
       firstName,
       lastName,
-      userName,
+      username,
       password,
       entries: [],
     });
