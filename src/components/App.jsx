@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import Profile from './Profile.jsx';
 
 const App = () => {
-  const [username, setUsername] = useState('');
+  const [userName, setUsername] = useState('');
   const getUser = (data) => {
     setUsername(data);
   }
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Login getUser={getUser} />}></Route>
-        <Route path='/signup' element={<Signup />}></Route>
+        <Route path='/' element={<Login getUser={getUser} />} />
+        <Route path='/profile' element={<Profile userName={userName} />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
     </Router>
 

@@ -33,6 +33,8 @@ const Signup = () => {
       console.log('data has fetched', data);
       navigate('/');
       alert('Created an account! Log-in');
+    }).catch(err => {
+      alert('username/password is invalid');
     })
   }
 
