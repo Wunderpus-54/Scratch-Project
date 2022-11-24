@@ -28,6 +28,7 @@ const Profile = (props) => {
     
     return (
         <div className='profile'>
+            <h1 className='title'> MoodSwings </h1>
             <CreateEntry userName={userName}/>
             <DisplayEntry entries={entries}/>
         </div>
