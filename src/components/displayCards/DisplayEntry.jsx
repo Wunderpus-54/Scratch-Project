@@ -9,6 +9,7 @@ const DisplayEntry = (props) => {
 
     return (
         <section className='displayEntry'>
+            <h3>My Entries</h3>
             {entries.map((entry, i) => {
                 return (
                  <div key={i}>

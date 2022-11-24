@@ -27,7 +27,7 @@ const EntryCard = (entries) => {
             <div>
                 <p>{journal}</p>
             </div>
-            <div>
+            <div className='delButton'>
                 <button onClick={delCard} className='deleteButton'>Delete</button>
             </div>
         </div>

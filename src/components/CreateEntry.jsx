@@ -30,6 +30,11 @@ const CreateEntry = (props) => {
     }
     return(
         <div className='createEntry'>
+            <div>
+            <h3>Create Entry</h3>
+            </div>
+            <br />
+            <div className='createArea'>
             <input
                 type='text'
                 id='iLearned'
@@ -45,6 +50,7 @@ const CreateEntry = (props) => {
                 <option value={3}>3</option>
             </select>
             <button onClick={handleClicks}>Submit</button>
+            </div>
         </div>
     )
 
