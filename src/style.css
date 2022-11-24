@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+* {
+    font-family: 'Space Mono', monospace;
+}
+
+.displayEntry{
+    display: flex;
+    flex-direction: column;
+}
+
+.entries{
+    border: solid;
+    border-radius: 2em;
+    width: 30em;
+    height: 12em;
+    margin: 1em;
+    overflow-y: scroll;
+}
+
+.delButton {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+p {
+    margin: 1em 1em 1em 1em;
+}
+
+.createArea {
+    width: 40%;
+    display: flex;
+    margin-left: 1em;
+    justify-content: space-between;
+}
+
+textarea {
+    overflow: auto;
+    outline: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+h1 {
+    font-size: 4em;
+    margin-top: 0em;
+}
