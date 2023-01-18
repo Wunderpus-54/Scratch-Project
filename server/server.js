@@ -1,6 +1,7 @@
 // requiring in express
 const express = require('express');
 const { urlencoded } = require('express');
+require('dotenv').config();
 
 // in case we need to route paths
 const path = require('path');
@@ -18,23 +19,35 @@ const PORT = 3000;
 //json parsing
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-
+app.use(cookieParser());
 // for the cors header since we're making a call to our backend api
 const cors = require('cors');
 app.use(cors());
 
 // insert database URI
 
-// insert database connection
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Connected to Database');
+  });
 
 // require in routers
+const authRouter = require('./routes/authRouter');
+const entryRouter = require('./routes/entryRouter');
 
 // static files
 // THIS NEEDS TO BE CHANGED TO WHEREVER OUR STATIC FILE IS BEING SERVED! I used ./index.html as a placeholder.
-app.use(express.static(path.join(_dirname, './index.html')));
+app.use(express.static(path.join(__dirname, '../src/index.html')));
 
 // auth router
 // entry router
+
+app.use('/api/auth', authRouter);
+app.use('/api/entry', entryRouter);
 
 // catch all
 app.use((req, res) => res.status(404).send('Page not found'));
